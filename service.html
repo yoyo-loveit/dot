@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="ctrl1" ng-click="say()">
+    点击
+    {{name}}
+    <p>{{age}}</p>
+</div>
+<div ng-controller="ctrl2" ng-click="say()">
+    点击2
+</div>
+<script src="angular.js"></script>
+<script>
+    var app=angular.module("myApp",[]);
+/*    app.factory("facserve",function () {
+        var data={"name":"小红","age":"20"};
+        return data;
+    })
+    app.controller("ctrl1",function ($scope,facserve) {
+        $scope.say=function () {
+            alert(facserve.name);
+        }
+    })
+    app.controller("ctrl2",function ($scope,facserve) {
+        $scope.say=function () {
+            alert(facserve.name);
+        }
+    })*/
+//    factory方法自定义服务
+
+  /*  app.service("serServe",function () {
+     this.name="xiaoli";
+     this.age="19";
+     })
+     app.controller("ctrl1",function ($scope,serServe) {
+     $scope.name=serServe.name;
+     })*/
+    //service方法自定义服务
+
+
+    app.provider("proServe",function () {
+        this.name="小明";
+        this.$get=function () {
+            return this.name;
+        }
+    })
+    app.controller("ctrl1",function ($scope,proServe) {
+        $scope.age=proServe;
+    })
+</script>
+</body>
+</html>
